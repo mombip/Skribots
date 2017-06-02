@@ -1,5 +1,5 @@
 # Skribots
-A repository containing Arduino Library for programming [Skriware](skriware.com) 3D printed robots.
+A repository containing Arduino Library for [Skriware](skriware.com) 3D printed robots.
 
 ## Installation
 
