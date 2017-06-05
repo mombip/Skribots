@@ -7,7 +7,7 @@
  * Left Rotor on digital PIN 9
  * Right Rotor on digital PIN 10
  * 
- * Line dtector on ANALOG pins 0,1,2
+ * Line dtector on ANALOG pin 0
  *
  *IMPORTANT!!!!: Sensor needs to calibrat! after the code starts you need to put sensor above line and above background of the line to let it save raw 
  * values for those two . Calibration takes about 10 seconds.
@@ -15,20 +15,20 @@
 SkriBot robot;
                         
 void setup() {
-  robot.AddLineSensor(2,1,0);         //Adding line sensor
+  robot.AddLineSensor(0,"Center");         //Adding line sensor and gi
   
-  robot.AddRotor(9,"Left");           //Adding Rotors
+  robot.AddRotor(9,"Left");           		//Adding Rotors
   robot.AddRotor(10,"Right");
 }
 
 void loop() {
-  if(robot.ReadLineSensor()){           //Chcecking if sensor is detecting the line below it.
+  if(robot.ReadLineSensor("Center")){           //Chcecking if sensor is detecting the line below it.
     
-    robot.TurnLeft(200);                // Turning Left
+    robot.TurnLeft(200);                		// Turning Left
                       
   }else{
     
-    robot.TurnRight(200);               //Turning Right  
+    robot.TurnRight(200);               		//Turning Right  
   }
 
 }

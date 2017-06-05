@@ -15,17 +15,12 @@ DistSensor	KEYWORD1	MainRobot
 #######################################
 AddRotor				KEYWORD2
 AddDistSensor			KEYWORD2
+ReadDistSensor			KEYWORD2
 AddLineSensor			KEYWORD2
-ReadLeftLineSensor		KEYWORD2
-ReadRightLineSensor		KEYWORD2
-ReadCenterLineSensor	KEYWORD2
 ReadLineSensor			KEYWORD2
 AddLED					KEYWORD2
 Move					KEYWORD2
 Stop					KEYWORD2
-ReadLeftDistSensor		KEYWORD2
-ReadRightDistSensor		KEYWORD2
-ReadCenterDistSensor	KEYWORD2
 TurnLeft				KEYWORD2
 TurnRight				KEYWORD2
 FaceLeft				KEYWORD2

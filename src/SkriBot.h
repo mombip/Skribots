@@ -1,10 +1,10 @@
 #ifndef SkriBot_H
 #define SkriBot_H
 #include "Arduino.h"
-#include <utilities/ServoRotor.h>
-#include <utilities/DistSensor.h>
-#include <utilities/RobotLED.h>
-#include <utilities/LineSensor.h>
+#include <utilities\ServoRotor.h>
+#include <utilities\DistSensor.h>
+#include <utilities\RobotLED.h>
+#include <utilities\LineSensor.h>
 #include <StandardCplusplus.h>
 #include <utilities/BlueDentist.h>
 #include <vector>
@@ -14,9 +14,9 @@
   public:
   	SkriBot();
   	void AddRotor(int Pin,String Side); 
-  	void AddDistSensor(int EchoPin,int TrigPin,String side);
+  	void AddDistSensor(int EchoPin,int TrigPin,String Name);
     void AddLED(int Pin,String name);
-    void AddLineSensor(int leftPin,int centerPin, int rightPin);   //functions for element adding
+    void AddLineSensor(int Pin, String Name);   //functions for element adding
 
     void Move(char Direction,int ms);
     void FaceLeft(int ms = 200);
@@ -27,25 +27,18 @@
     void MoveBack(int ms = -1);
     void Stop();                                                  //functions for movements
 
-    int ReadLeftDistSensor(int cm);
-    int ReadRightDistSensor(int cm);
-    int ReadCenterDistSensor(int cm);                             //distance sensor readout
+    int ReadDistSensor(String id, int max = 100);                 //distance sensor readout
 
     void TurnOnLED(String name);
     void TurnOffLED(String name);                                 // LED functions
 
-    bool ReadLeftLineSensor(int i = 0);
-    bool ReadRightLineSensor(int i = 0);
-    bool ReadCenterLineSensor(int i = 0);
-    bool ReadLineSensor(int i =0 );
-    void CalibrateLineSensor();                                       // line sensor readout
+    bool ReadLineSensor(String name);
+    void CalibrateLineSensor(int i);                              // line sensor readout
 
   private:
   std::vector<ServoRotor> LeftRotors;
   std::vector<ServoRotor> RightRotors;
-  std::vector<DistSensor> LeftDistSensors;
-  std::vector<DistSensor> RightDistSensors;
-  std::vector<DistSensor> CenterDistSensors;
+  std::vector<DistSensor> DistSensors;
   std::vector<RobotLED> LEDs;
   std::vector<LineSensor> LineSensors;
  };

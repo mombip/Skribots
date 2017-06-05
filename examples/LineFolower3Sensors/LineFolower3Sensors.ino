@@ -17,32 +17,43 @@
  *
  * WARNING!!!: This configuration requires line detector to be perallel to the line, and due to small detector size it will work good only for thin lines and small robots. 
  */
+
 SkriBot robot;
+bool LeftSensor;
+bool RightSensor;
+bool CenterSensor;
 void setup() {
-  robot.AddLineSensor(2,1,0);         //Adding line sensor
-  
+  robot.AddLineSensor(0,"LEFT");         //Adding line sensors
+  robot.AddLineSensor(1,"CENTER");
+  robot.AddLineSensor(2,"RIGHT");
+
   robot.AddRotor(9,"Left");           //Adding Rotors
   robot.AddRotor(10,"Right");
 }
+
 void loop() {
 
-if(!robot.ReadLeftLineSensor() && !robot.ReadRightLineSensor() && robot.ReadCenterLineSensor()){  //if we see line on the middle sensor we can proceed forward
+LeftSensor 		= robot.ReadLineSensor("LEFT");
+CenterSensor 	= robot.ReadLineSensor("RIGHT");
+RightSensor		= robot.ReadLineSensor("CENTER");				// Reading from line sensors
+	
+if(!LeftSensor && !RightSensor && CenterSensor){  //if we see line on the middle sensor we can proceed forward
     robot.MoveForward(150);
-}else if(robot.ReadLeftLineSensor()){                                                             // Line is on the Left we want to have it in the middle - let's turn Right
+}else if(LeftSensor){                                                             // Line is on the Left we want to have it in the middle - let's turn Right
   
     robot.Move('Z',150);                                                                          //Secial Function for moving only Right wheel
     
-}else if(robot.ReadRightLineSensor()){                                                            // Line is on the Right we want to have it in the middle - let's turn Left
+}else if(RightSensor){                                                            // Line is on the Right we want to have it in the middle - let's turn Left
   
     robot.Move('M',150);                                                                          //Secial Function for moving only Left wheel
     
-}else if(robot.ReadRightLineSensor() && robot.ReadCenterLineSensor()){                            //Sharp Right turn
+}else if(CenterSensor && RightSensor){                            //Sharp Right turn
     robot.TurnRight(300);
-}else if(robot.ReadLeftLineSensor() && robot.ReadCenterLineSensor()){                             //Sharp Left  turn
+}else if(LeftSensor && CenterSensor){                             //Sharp Left  turn
     robot.TurnLeft(300);
 }
 else{
-  robot.TurnRight(100);
+  	robot.TurnRight(100);
 }
 
     

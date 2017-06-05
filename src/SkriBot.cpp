@@ -12,26 +12,21 @@
      }
   }
 
-  void SkriBot::AddDistSensor(int EchoPin,int TrigPin,String Side){
-    DistSensor dsensor(EchoPin,TrigPin);
-     if(Side == "Left"){
-      LeftDistSensors.push_back(dsensor);
-     }else if(Side == "Right"){
-      RightDistSensors.push_back(dsensor);
-     }else if(Side == "Center"){
-      CenterDistSensors.push_back(dsensor);
-     }
+  void SkriBot::AddDistSensor(int EchoPin,int TrigPin,String name){
+    DistSensor dsensor(EchoPin,TrigPin,name);
+      DistSensors.push_back(dsensor);
+     
   }
 
-  void SkriBot::AddLineSensor(int pinL,int pinC,int pinR){
-    LineSensor lsensor(pinL,pinC,pinR);
+  void SkriBot::AddLineSensor(int pinL,String Name){
+    LineSensor lsensor(pinL,Name);
     delay(500);
+    lsensor.calibrate();
     LineSensors.push_back(lsensor);
-    CalibrateLineSensor();
   }
 
-  void SkriBot::CalibrateLineSensor(){
-    LineSensors[0].calibrate();
+  void SkriBot::CalibrateLineSensor(int i){
+    LineSensors[i].calibrate();
   }
 
   void SkriBot::AddLED(int pin,String name){
@@ -57,34 +52,26 @@
       }
   }
 
-  int SkriBot::ReadLeftDistSensor(int cm){
-    return(LeftDistSensors[0].ReadSensor(cm));
+  bool SkriBot::ReadLineSensor(String name){
+    bool logicPosition; 
+    for(int zz = 0; zz < LineSensors.size(); zz++){
+                    if(LineSensors[zz].GetName() == name){
+                      LineSensors[zz].ReadSensor(logicPosition);
+                      return(logicPosition);
+                      break;
+                    }
+      }
+    return(false);
   }
 
-  int SkriBot::ReadRightDistSensor(int cm){
-    return(RightDistSensors[0].ReadSensor(cm));
-  }
-
-  int SkriBot::ReadCenterDistSensor(int cm){
-     return(CenterDistSensors[0].ReadSensor(cm));
-  }
-
-  bool SkriBot::ReadLeftLineSensor(int i){
-    return(LineSensors[i].ReadLeftSensor());
-  }
-
-   bool SkriBot::ReadRightLineSensor(int i){
-    return(LineSensors[i].ReadRightSensor());
-  }
-
-   bool SkriBot::ReadCenterLineSensor(int i){
-    return(LineSensors[i].ReadCenterSensor());
-  }
-
-  bool SkriBot::ReadLineSensor(int i){
-    bool logicPositions[3]; 
-    LineSensors[i].ReadAllSensors(logicPositions);
-    return(logicPositions[0] || logicPositions[1] || logicPositions[2]);
+  int SkriBot::ReadDistSensor(String id, int max){
+     for(int zz = 0; zz < DistSensors.size(); zz++){
+                    if(DistSensors[zz].GetName() == id){
+                      return(DistSensors[zz].ReadSensor(max));
+                      break;
+                    }
+      }
+      return(0);
   }
 
   

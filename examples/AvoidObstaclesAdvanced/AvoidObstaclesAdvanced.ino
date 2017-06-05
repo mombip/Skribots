@@ -32,14 +32,14 @@ void setup() {
   robot.AddRotor(9,"Left");             //adding Rotors
   robot.AddRotor(10,"Right");
   
-  robot.AddDistSensor(12,11,"Left");   //adding Distance Sensors 
+  robot.AddDistSensor(12,11,"Left");   //adding Distance Sensors  and naming them "Left and Right";
   robot.AddDistSensor(7,6,"Right");
 
 }
 
 void loop() {
-    LeftSensor = robot.ReadLeftDistSensor(10);
-    RightSensor = robot.ReadRightDistSensor(10);
+    LeftSensor = robot.ReadDistSensor("Left",10);
+    RightSensor = robot.ReadDistSensor("Right",10);         //Reading from distance sensors up to 10 cm.
     if(LeftSensor > RightSensor){                           //checking previous readout
         if(RightSensor > lastRightSensor){        
           robot.TurnRight(300);                              // Turning Right  

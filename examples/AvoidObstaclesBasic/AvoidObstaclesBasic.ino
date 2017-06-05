@@ -28,21 +28,21 @@ void setup() {
   robot.AddRotor(9,"Left");                       //adding Rotors
   robot.AddRotor(10,"Right");
   
-  robot.AddDistSensor(12,11,"Left");              //adding Distance sensors 
+  robot.AddDistSensor(12,11,"Left");              //adding Distance sensor and naming them "Left" and "Right". 
   robot.AddDistSensor(7,6,"Right");
 
 }
 
 void loop() {
-   LeftSensor = robot.ReadLeftDistSensor(15);       //Read distance to neares obstacle from both sensors up to 15 cm
-   RightSensor = robot.ReadRightDistSensor(15);  
+   LeftSensor = robot.ReadDistSensor("Left",20);       //Read distance to neares obstacle from both sensors up to 15 cm. We use names that we give to our sensors to read from them.
+   RightSensor = robot.ReadDistSensor("Right",20);  
 
-   if(LeftSensor == 15 && RightSensor == 15){       // There is no obstacles near both sensors -  move forward
+   if(LeftSensor == 20 && RightSensor == 20){       // There is no obstacles near both sensors -  move forward
       robot.MoveForward();
-   }else if(LeftSensor < 15){                       // Obstacle near Left Sensor - avoid it by turning Right
-      robot.TurnRight();
-   }else if(RightSensor < 15){                      // Obstacle near Right Sensor - avoid it by turning Left
-      robot.TurnLeft();
+   }else if(LeftSensor < 20){                       // Obstacle near Left Sensor - avoid it by turning Right
+      robot.FaceRight();
+   }else if(RightSensor < 20){                      // Obstacle near Right Sensor - avoid it by turning Left
+      robot.FaceLeft();
    }
    
 }

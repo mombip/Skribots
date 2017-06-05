@@ -1,8 +1,9 @@
 #include "DistSensor.h"
 
-DistSensor::DistSensor(int EP,int Trigg){
+DistSensor::DistSensor(int EP,int Trigg, String Name){
   EchoPin = EP;
   TriggerPin = Trigg;
+  name = Name;
    pinMode(Trigg, OUTPUT);
    pinMode(EP, INPUT);
 }
@@ -29,4 +30,8 @@ DistSensor::DistSensor(int EP,int Trigg){
     unsigned long int sigT = pulseIn(EchoPin,HIGH);
     long int l = sigT/58;
     return(l);
+  }
+
+  String DistSensor::GetName(){
+    return(name);
   }

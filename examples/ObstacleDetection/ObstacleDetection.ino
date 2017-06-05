@@ -18,26 +18,36 @@
  * Timmings for turns are set for example values, when building own robot you should do some tests to set good working turning times.
  */
 
+ #define ECHO_PIN 7
+ #define TRIGGER_PIN 6 
+
+ #define STOP_LED_PIN 4
+ #define WARNING_LED_PIN  3
+ #define OK_LED_PIN 5
+
+ #define RIGHT_ROTOR_PIN 10
+ #define LEFT_ROTOR_PIN 9           // definig pins for our outpur
+
   SkriBot robot;    //defining our hero
   
    int distance;    //variable to keep distance from the obstacle
 
 void setup() {
 
-   robot.AddRotor(9,"Left");           //Adding rotors
-   robot.AddRotor(10,"Right");
+   robot.AddRotor(LEFT_ROTOR_PIN,"Left");           //Adding rotors
+   robot.AddRotor(RIGHT_ROTOR_PIN,"Right");
 
-   robot.AddLED(4,"STOPLED");         // Adding LEDs
-   robot.AddLED(2,"OKLED");
-   robot.AddLED(3,"WARNINGLED");
+   robot.AddLED(STOP_LED_PIN,"STOPLED");         // Adding LEDs
+   robot.AddLED(OK_LED_PIN,"OKLED");
+   robot.AddLED(WARNING_LED_PIN,"WARNINGLED");
 
-   robot.AddDistSensor(7,6,"Left"); // Adding Distance sensor and defining it as a center sensor
+   robot.AddDistSensor(ECHO_PIN,TRIGGER_PIN,"Main"); // Adding Distance sensor and naming it "Main" we need to define on which 
 
 }
 
 void loop() {
 
- distance = robot.ReadLeftDistSensor(25); 		// Reading the distance to the nearest obstacle up to 25 cm if nothing in range it returns 25 cm.
+ distance = robot.ReadDistSensor("Main",25); 		// Reading the distance to the nearest obstacle from our previously defined "Main" sensor up to 25 cm if nothing in range it returns 25 cm.
 
        if(distance == 25){
              robot.TurnOnLED("OKLED");                // If no obastacle is in range go continuisly forward.
