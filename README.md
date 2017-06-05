@@ -62,5 +62,5 @@ We've included a few examples to show the library features and usage ideas.
 3. `ObstacleDetection` example shows basic ultrasonic distance sensor 
 4. `AvoidObstaclesBasic` example shows simple collision avoidance algorithm
 5. `AvoidObstaclesAdvanced` example shows more advanced algorithm with deadlocks avoidance
-6. `LineFolowerXSensors` series of examples implementing line follower algorithms using different number of diods.
+6. `LineFolowerXSensors` series of examples implementing line follower algorithms using different number of sensors.
 
