@@ -1,12 +1,12 @@
 #ifndef SkriBot_H
 #define SkriBot_H
 #include "Arduino.h"
-#include <utilities\ServoRotor.h>
-#include <utilities\DistSensor.h>
-#include <utilities\RobotLED.h>
-#include <utilities\LineSensor.h>
+#include <utilities/ServoRotor.h>
+#include <utilities/DistSensor.h>
+#include <utilities/RobotLED.h>
+#include <utilities/LineSensor.h>
 #include <StandardCplusplus.h>
-#include <utilities\BlueDentist.h>
+#include <utilities/BlueDentist.h>
 #include <vector>
 
   class SkriBot
