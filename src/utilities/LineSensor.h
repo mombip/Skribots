@@ -1,7 +1,7 @@
 #ifndef LineSensor3_H
 #define LineSensor3_H
 #include "Arduino.h"
-#include <QTRSensors.h>
+#include <utilities/QTRSensors.h>
 #define NUM_SENSORS             3  // number of sensors used
 #define NUM_SAMPLES_PER_SENSOR  4  // average 4 analog samples per sensor reading
 #define EMITTER_PIN             2  // emitter is controlled by digital pin 2
