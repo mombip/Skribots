@@ -5,11 +5,12 @@
   class ServoRotor
  {
   public:
-  	ServoRotor(int Pin, String Side);
+  	ServoRotor(int Pin, String Side, int neutral = 1520);
     void Move(char Direction);
     void Stop(int S);
   private:
   int _pin;
+  int _neutral;
   String _side;
   Servo servo;
  };

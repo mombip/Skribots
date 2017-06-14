@@ -23,9 +23,9 @@ bool LeftSensor;
 bool RightSensor;
 bool CenterSensor;
 void setup() {
-  robot.AddLineSensor(0,"LEFT");         //Adding line sensors
-  robot.AddLineSensor(1,"CENTER");
-  robot.AddLineSensor(2,"RIGHT");
+  robot.AddLineSensor(2,"LEFT");         //Adding line sensors
+  robot.AddLineSensor(0,"CENTER");
+  robot.AddLineSensor(1,"RIGHT");
 
   robot.AddRotor(9,"Left");           //Adding Rotors
   robot.AddRotor(10,"Right");
@@ -38,7 +38,7 @@ CenterSensor 	= robot.ReadLineSensor("RIGHT");
 RightSensor		= robot.ReadLineSensor("CENTER");				// Reading from line sensors
 	
 if(!LeftSensor && !RightSensor && CenterSensor){  //if we see line on the middle sensor we can proceed forward
-    robot.MoveForward(150);
+    robot.MoveForward();
 }else if(LeftSensor){                                                             // Line is on the Left we want to have it in the middle - let's turn Right
   
     robot.Move('Z',150);                                                                          //Secial Function for moving only Right wheel

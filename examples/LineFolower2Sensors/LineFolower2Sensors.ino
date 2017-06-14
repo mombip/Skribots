@@ -8,7 +8,7 @@
  * Left Rotor on digital PIN 9
  * Right Rotor on digital PIN 10
  * 
- * Line dtector 1 on ANALOG pin 0 on the LEFT side of Our Robot
+ * Line dtector 1 on ANALOG pin 2 on the LEFT side of Our Robot
  * Line dtector 2 on ANALOG pins 1 on the RIGHT side of Our Robot 
  * 
  *IMPORTANT!!!!: Sensor needs to calibrat! after the code starts you need to put sensor above line and above background of the line to let it save raw 
@@ -18,7 +18,7 @@ SkriBot robot;
 bool LEFTSens, RIGHTSens;
                         
 void setup() {
-  robot.AddLineSensor(0,"LEFT");         //Adding line sensor
+  robot.AddLineSensor(2,"LEFT");         //Adding line sensor
   robot.AddLineSensor(1,"RIGHT");         // In order to refer to this sensor we need to give '1' as an argument to the reading sensor
                                       //functions if you will implement more sensors you can refere to each sensor by its number
   

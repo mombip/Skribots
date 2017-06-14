@@ -13,7 +13,7 @@
  {
   public:
   	SkriBot();
-  	void AddRotor(int Pin,String Side); 
+  	void AddRotor(int Pin,String Side, int neutral = 1520); 
   	void AddDistSensor(int EchoPin,int TrigPin,String Name);
     void AddLED(int Pin,String name);
     void AddLineSensor(int Pin, String Name);   //functions for element adding
@@ -33,7 +33,7 @@
     void TurnOffLED(String name);                                 // LED functions
 
     bool ReadLineSensor(String name);
-    void CalibrateLineSensor(int i);                              // line sensor readout
+    //void CalibrateLineSensor(String nameWhite,String nameBlack);                              // line sensor readout
 
   private:
   std::vector<ServoRotor> LeftRotors;

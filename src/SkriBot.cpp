@@ -3,8 +3,8 @@
   SkriBot::SkriBot(){
     
   }
-  void SkriBot::AddRotor(int Pin, String Side){
-    ServoRotor rotor(Pin,Side);
+  void SkriBot::AddRotor(int Pin, String Side, int neutral){
+    ServoRotor rotor(Pin,Side,neutral);
      if(Side == "Left"){
       LeftRotors.push_back(rotor);
      }else if(Side == "Right"){
@@ -15,18 +15,12 @@
   void SkriBot::AddDistSensor(int EchoPin,int TrigPin,String name){
     DistSensor dsensor(EchoPin,TrigPin,name);
       DistSensors.push_back(dsensor);
-     
   }
 
   void SkriBot::AddLineSensor(int pinL,String Name){
     LineSensor lsensor(pinL,Name);
     delay(500);
-    lsensor.calibrate();
     LineSensors.push_back(lsensor);
-  }
-
-  void SkriBot::CalibrateLineSensor(int i){
-    LineSensors[i].calibrate();
   }
 
   void SkriBot::AddLED(int pin,String name){
@@ -52,12 +46,10 @@
       }
   }
 
-  bool SkriBot::ReadLineSensor(String name){
-    bool logicPosition; 
+  bool SkriBot::ReadLineSensor(String name){ 
     for(int zz = 0; zz < LineSensors.size(); zz++){
                     if(LineSensors[zz].GetName() == name){
-                      LineSensors[zz].ReadSensor(logicPosition);
-                      return(logicPosition);
+                      return(LineSensors[zz].ReadSensor());
                       break;
                     }
       }
@@ -77,7 +69,7 @@
   
   void SkriBot::Move(char Dir,int ms){
       switch(Dir){
-        case 'F':
+        case 'B':
                   for(int kk = 0; kk < LeftRotors.size(); kk++){
                     LeftRotors[kk].Move('F');
                   }
@@ -87,7 +79,7 @@
                   }
         break;
         
-        case 'B':
+        case 'F':
                   for(int kk = 0; kk < LeftRotors.size(); kk++){
                     LeftRotors[kk].Move('B');
                   }
@@ -99,7 +91,7 @@
 
         case 'L':
                   for(int kk = 0; kk < LeftRotors.size(); kk++){
-                    LeftRotors[kk].Move('B');
+                    LeftRotors[kk].Stop('B');
                   }
           
                   for(int zz = 0; zz < RightRotors.size(); zz++){

@@ -1,31 +1,30 @@
 #include "LineSensor.h"
 
 LineSensor::LineSensor(int PinL, String Name){
-  sensorAddressArray =  (unsigned char)PinL;
- qtra = new QTRSensorsAnalog(sensorAddressArray,1, 4, 2);
  name = Name;
+ sensorPin = PinL;
   delay(500);
-  logicBorder = 600;
+  int blackReadOut = 0;
+  /*for(int kk = 0; kk< 100; kk++){
+    blackReadOut += analogRead(sensorPin);
+    delay(20);
+  }*/
+    blackReadOut = blackReadOut/100;
+    logicBorder = 500;
+    //Serial.println(logicBorder);
 }
 
-void LineSensor::ReadSensor(bool logicPosition){
-  unsigned int sensorValues[1];
-  qtra->readLine(sensorValues);
-    if(sensorValues > logicBorder){
-      logicPosition = true;
+bool LineSensor::ReadSensor(){
+  int readout = analogRead(sensorPin);
+    if(readout > logicBorder){
+      return(true);
     }else{
-      logicPosition = false;
-    }
-  
+      return(false);
+    }  
 }
 
-void LineSensor::calibrate(){
-  for (int ij = 0; ij < 400; ij++){
-    qtra->calibrate();       // reads all sensors 10 times at 2.5 ms per six sensors (i.e. ~25 ms per call)
-  }
-    qtra->calibratedMinimumOn[0];
-    qtra->calibratedMaximumOn[0];
-   delay(1000);
+int LineSensor::ReadSensorRaw(){
+    return(analogRead(sensorPin));
 }
 
 void LineSensor::SetLogicBorder(int border){
