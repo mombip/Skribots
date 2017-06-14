@@ -1,6 +1,8 @@
 # Skribots
 A repository containing Arduino Library for [Skriware](skriware.com) 3D printed robots.
 
+**Important:** 3D printed parts and hardware assembly instructions can be found [here](https://drive.google.com/open?id=0Bz6l25Zss7ghNzNVbVlyb2d4NjQ)
+
 ## Installation
 
 This is an Arduino Library, so in order to use it you will need [Arduino IDE](https://www.arduino.cc/en/main/software).
