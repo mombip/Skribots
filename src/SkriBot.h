@@ -5,6 +5,7 @@
 #include <utilities\DistSensor.h>
 #include <utilities\RobotLED.h>
 #include <utilities\LineSensor.h>
+#include <utilities\Scope.h>
 #include <StandardCplusplus.h>
 #include <utilities/BlueDentist.h>
 #include <vector>
@@ -16,7 +17,9 @@
   	void AddRotor(int Pin,String Side, int neutral = 1520); 
   	void AddDistSensor(int EchoPin,int TrigPin,String Name);
     void AddLED(int Pin,String name);
-    void AddLineSensor(int Pin, String Name);   //functions for element adding
+    void AddLineSensor(int Pin, String Name); 
+    void AddScope(int EchoPin,int Trigg,int ServoPin,String Name);
+                                                                  //functions for element adding
 
     void Move(char Direction,int ms);
     void FaceLeft(int ms = 200);
@@ -27,20 +30,23 @@
     void MoveBack(int ms = -1);
     void Stop();                                                  //functions for movements
 
-    int ReadDistSensor(String id, int max = 100);                 //distance sensor readout
+    int ReadDistSensor(String id, int max = 100);
+                                                                  //distance sensor readout
 
     void TurnOnLED(String name);
     void TurnOffLED(String name);                                 // LED functions
 
     bool ReadLineSensor(String name);
-    //void CalibrateLineSensor(String nameWhite,String nameBlack);                              // line sensor readout
-
+                                                                 // line sensor readout
+    void SetScopeAngle(String id, int deg);  
+    int  GetScopeDistance(String id);                               //Scope functions
   private:
   std::vector<ServoRotor> LeftRotors;
   std::vector<ServoRotor> RightRotors;
   std::vector<DistSensor> DistSensors;
   std::vector<RobotLED> LEDs;
   std::vector<LineSensor> LineSensors;
+  std::vector<Scope> Scopes;
  };
 
  #endif

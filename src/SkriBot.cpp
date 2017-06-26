@@ -28,6 +28,30 @@
     LEDs.push_back(led);
   }
 
+  void SkriBot::AddScope(int EchoPin,int Trigg,int ServoPin,String Name){
+    Scope scope(EchoPin,Trigg,ServoPin,Name);
+    Scopes.push_back(scope);
+  }
+
+  void SkriBot::SetScopeAngle(String name,int deg){
+    for(int zz = 0; zz < Scopes.size(); zz++){
+                    if(Scopes[zz].GetName() == name){
+                      Scopes[zz].SetAngle(deg);
+                      break;
+                    }
+      }
+  }
+
+  int SkriBot::GetScopeDistance(String name){
+    for(int zz = 0; zz < Scopes.size(); zz++){
+                    if(Scopes[zz].GetName() == name){
+                      return(Scopes[zz].GetDistance());
+                      break;
+                    }
+      }
+  }
+
+
   void SkriBot::TurnOnLED(String name){
     for(int zz = 0; zz < LEDs.size(); zz++){
                     if(LEDs[zz].name() == name){
@@ -66,6 +90,7 @@
       return(0);
   }
 
+
   
   void SkriBot::Move(char Dir,int ms){
       switch(Dir){
@@ -91,7 +116,7 @@
 
         case 'L':
                   for(int kk = 0; kk < LeftRotors.size(); kk++){
-                    LeftRotors[kk].Stop('B');
+                    LeftRotors[kk].Move('B');
                   }
           
                   for(int zz = 0; zz < RightRotors.size(); zz++){
