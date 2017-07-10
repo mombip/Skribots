@@ -5,8 +5,9 @@
  * If you see obstacle on left  side - Turn Right 
  * 
  * Connections for robot:
- * Left Rotor on digital PIN 9
- * Right Rotor on digital PIN 10
+ * 
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
  * 
  * Distance detectors needs two pins to be conected:
  * 
@@ -25,8 +26,9 @@
   SkriBot robot;                                  //defining our hero
   int LeftSensor,RightSensor;  
 void setup() {
-  robot.AddRotor(9,"Left");                       //adding Rotors
-  robot.AddRotor(10,"Right");
+
+  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+  robot.AddDCRotor(5,4,"Right");
   
   robot.AddDistSensor(12,11,"Left");              //adding Distance sensor and naming them "Left" and "Right". 
   robot.AddDistSensor(7,6,"Right");

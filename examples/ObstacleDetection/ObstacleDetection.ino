@@ -5,8 +5,9 @@
  * Robot moves forward if there is no obstacle in front of it, gives a warninig if somthing is close, and stops 10 cm from obstacle to avoid collision.
  * 
  * Connections for robot:
- * Left Rotor on digital PIN 9
- * Right Rotor on digital PIN 10
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
+ *
  * "Safe Way" LED on digital PIN 2
  * "Warning" LED on digital PIN 3
  * "STOP" LED on PIN 4
@@ -25,17 +26,14 @@
  #define WARNING_LED_PIN  3
  #define OK_LED_PIN 5
 
- #define RIGHT_ROTOR_PIN 10
- #define LEFT_ROTOR_PIN 9           // definig pins for our outpur
-
   SkriBot robot;    //defining our hero
   
    int distance;    //variable to keep distance from the obstacle
 
 void setup() {
 
-   robot.AddRotor(LEFT_ROTOR_PIN,"Left");           //Adding rotors
-   robot.AddRotor(RIGHT_ROTOR_PIN,"Right");
+  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+  robot.AddDCRotor(5,4,"Right");
 
    robot.AddLED(STOP_LED_PIN,"STOPLED");         // Adding LEDs
    robot.AddLED(OK_LED_PIN,"OKLED");

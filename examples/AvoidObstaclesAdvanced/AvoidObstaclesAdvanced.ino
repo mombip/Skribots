@@ -8,8 +8,8 @@
  *  It's time to make a big turn and get away! See the code below for details
  * 
  * Connections for robot:
- * Left Rotor on digital PIN 9
- * Right Rotor on digital PIN 10
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
  * 
  * Distance detectors needs two pins to be conected:
  * 
@@ -29,8 +29,8 @@
   int LeftSensor,RightSensor;           //variables for sensor readout
   int lastLeftSensor,lastRightSensor;   //variable for sensor readouts from previous decision making
 void setup() {
-  robot.AddRotor(9,"Left");             //adding Rotors
-  robot.AddRotor(10,"Right");
+  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+  robot.AddDCRotor(5,4,"Right");
   
   robot.AddDistSensor(12,11,"Left");   //adding Distance Sensors  and naming them "Left and Right";
   robot.AddDistSensor(7,6,"Right");

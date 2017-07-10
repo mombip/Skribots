@@ -8,6 +8,7 @@
 #include <utilities\Scope.h>
 #include <StandardCplusplus.h>
 #include <utilities/BlueDentist.h>
+#include <utilities\Rotor.h>
 #include <vector>
 
   class SkriBot
@@ -19,6 +20,7 @@
     void AddLED(int Pin,String name);
     void AddLineSensor(int Pin, String Name); 
     void AddScope(int EchoPin,int Trigg,int ServoPin,String Name);
+    void AddDCRotor(int SpeedPin,int DirectionPin, String side);
                                                                   //functions for element adding
 
     void Move(char Direction,int ms);
@@ -28,7 +30,9 @@
     void TurnRight(int ms = 200);
     void MoveForward(int ms = -1);
     void MoveBack(int ms = -1);
-    void Stop();                                                  //functions for movements
+    void Stop();   
+
+    void SetSpeed(int speed);                                               //functions for movements
 
     int ReadDistSensor(String id, int max = 100);
                                                                   //distance sensor readout
@@ -47,6 +51,9 @@
   std::vector<RobotLED> LEDs;
   std::vector<LineSensor> LineSensors;
   std::vector<Scope> Scopes;
+  std::vector<Rotor> LeftDCRotors;
+  std::vector<Rotor> RightDCRotors;
+  int DCSpeed = 0;
  };
 
  #endif

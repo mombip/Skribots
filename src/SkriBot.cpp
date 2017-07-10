@@ -12,6 +12,15 @@
      }
   }
 
+  void SkriBot::AddDCRotor(int SpeedPin,int DirectionPin, String Side){
+    Rotor dcrotor(SpeedPin,DirectionPin);
+     if(Side == "Left"){
+      LeftDCRotors.push_back(dcrotor);
+     }else if(Side == "Right"){
+      RightDCRotors.push_back(dcrotor);
+     }
+  }
+
   void SkriBot::AddDistSensor(int EchoPin,int TrigPin,String name){
     DistSensor dsensor(EchoPin,TrigPin,name);
       DistSensors.push_back(dsensor);
@@ -93,6 +102,7 @@
 
   
   void SkriBot::Move(char Dir,int ms){
+      if(LeftRotors.size() > 0 && RightRotors.size() >0){
       switch(Dir){
         case 'B':
                   for(int kk = 0; kk < LeftRotors.size(); kk++){
@@ -192,7 +202,136 @@
                     RightRotors[zz].Stop(0);
                   }
         }
+      }
+
+      if (LeftDCRotors.size() > 0 && RightDCRotors.size() >0){
+         switch(Dir){
+        case 'B':
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(1);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int zz = 0; zz < RightDCRotors.size(); zz++){
+                    RightDCRotors[zz].SetDirection(0);
+                    RightDCRotors[zz].Move();
+                  }
+        break;
+        
+        case 'F':
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(0);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(1);
+                    RightDCRotors[kk].Move();
+                  }
+        break;
+
+        case 'L':
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(1);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(1);
+                    RightDCRotors[kk].Move();
+                  }
+         break;
+
+         case 'R':
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(0);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(0);
+                    RightDCRotors[kk].Move();
+                  }
+         break;
+
+        case 'S' :
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].Stop();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].Stop();
+                  }
+         break; 
+//*******************************************************************************
+         case 'K' :
+                  for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(1);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(1);
+                    RightDCRotors[kk].Move();
+                  }
+         break;
+
+         case 'Z' :
+                    for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(0);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(1);
+                    RightDCRotors[kk].SetSpeed(0.5*DCSpeed);
+                    RightDCRotors[kk].Move();
+                  }
+         break;
+
+         case 'M' :
+                   for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(0);
+                    LeftDCRotors[kk].SetSpeed(0.5*DCSpeed);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(1);
+                    RightDCRotors[kk].Move();
+                  }
+         break;
+
+      }
+        
+        if(ms > 0 ){
+          delay(ms);
+          for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetSpeed(DCSpeed);
+                    LeftDCRotors[kk].Stop();
+                  }
+          
+           for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetSpeed(DCSpeed);
+                    RightDCRotors[kk].Stop();
+            }
+      }
+
+    }
   }
+
+    void SkriBot::SetSpeed(int s){ 
+      DCSpeed = s;
+      for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetSpeed(DCSpeed);
+                    
+                  }
+          
+      for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetSpeed(DCSpeed);
+                    
+            }
+    }
 
     void SkriBot::TurnLeft(int ms){Move('Z',ms);}
     void SkriBot::TurnRight(int ms){Move('M',ms);}

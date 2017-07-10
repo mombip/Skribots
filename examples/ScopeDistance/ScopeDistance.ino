@@ -3,16 +3,16 @@
 SkriBot robot;          //defining our Robot
 int degree = 90;
 int left;
-int kat = 900;
+int kat = 650;
 bool LeftSensor;
 bool RightSensor;
 bool CenterSensor;
 long int STA;
 long int STO;
 void setup() {
-  robot.AddScope(7,6,9,"Main");
-  robot.AddRotor(8,"Right",1535);
-  robot.AddRotor(10,"Left",1460);
+  robot.AddScope(11,12,8,"Main");
+  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+  robot.AddDCRotor(5,4,"Right");
   robot.AddLineSensor(2,"LEFT");         //Adding line sensors
   robot.AddLineSensor(0,"CENTER");
   robot.AddLineSensor(1,"RIGHT");
@@ -96,10 +96,10 @@ int Scan(){
 
 void loop() {
   delay(100);
-  while(robot.GetScopeDistance("Main") > 10){
-LeftSensor     = robot.ReadLineSensor("LEFT");
-CenterSensor  = robot.ReadLineSensor("RIGHT");
-RightSensor   = robot.ReadLineSensor("CENTER");       // Reading from line sensors
+ while(robot.GetScopeDistance("Main") > 10){
+LeftSensor    = robot.ReadLineSensor("LEFT");
+CenterSensor  = robot.ReadLineSensor("CENTER");
+RightSensor   = robot.ReadLineSensor("RIGHT");       // Reading from line sensors
   
 if(!LeftSensor && !RightSensor && CenterSensor){  //if we see line on the middle sensor we can proceed forward
     robot.MoveForward();

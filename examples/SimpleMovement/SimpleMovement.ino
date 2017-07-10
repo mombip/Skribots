@@ -3,8 +3,8 @@
 /*In this example robot has got two rotors one for each side, and two LEDs coresponding to each rotor.
  * LEDs signalize which rotor is working at the moment;
  * Connections for robot:
- * Left Rotor on digital PIN 6
- * Right Rotor on digital PIN 7
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
  * Left Rotor LED on digital PIN 2
  * Right Rotor LED on digital PIN 3
  * 
@@ -20,8 +20,8 @@ SkriBot robot;                      //defining our hero
 
 void setup() {
   
-    robot.AddRotor(9,"Left");           //Adding rotors defining which rotor is placed on which side
-    robot.AddRotor(10,"Right");
+    robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+    robot.AddDCRotor(5,4,"Right");
 
     robot.AddLED(6,"LeftRotorLED");    //Adding LEDs
     robot.AddLED(7,"RightRotorLED");

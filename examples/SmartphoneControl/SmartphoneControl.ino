@@ -4,8 +4,8 @@
  * You can download it on Android from store for free: https://play.google.com/store/apps/details?id=com.avrthing.toothfairyfree
  * 
  * Robot configuration in this example is:
- * -Left Rotor on digital PIN 9
- * -Right Rotor on digital PIN 10
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
  * 
  * -Bluetooth adapter connected to Arduino RX and TX pins
  * 
@@ -28,15 +28,15 @@
   BDBTN *RButton;
   
 void setup() {
-  robot.AddRotor(9,"Left");               //adding rotors
-  robot.AddRotor(10,"Right");
+  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+  robot.AddDCRotor(5,4,"Right");
 
    
   FButton   = new BDBTN("Forward");       //creating buttons in ToothFairy Software
   LButton   = new BDBTN("Left");
   RButton   = new BDBTN("Right");
 
-  myDentist = new BlueDentist(9600);      //initializing Andrioi connection 
+  myDentist = new BlueDentist(9600);      //initializing Android connection 
   
    myDentist->add(FButton);               //adding buttons to Andriod app GUI
    myDentist->add(LButton);

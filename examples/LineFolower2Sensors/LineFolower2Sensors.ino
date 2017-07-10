@@ -5,8 +5,8 @@
  * 
  *  Connections for robot:
  * 
- * Left Rotor on digital PIN 9
- * Right Rotor on digital PIN 10
+ * Left Rotor on digital pins: 6 - speed PIN, 7 - direction PIN
+ * Right Rotor on digital pins: 5 - speed PIN, 4 - direction PIN
  * 
  * Line dtector 1 on ANALOG pin 2 on the LEFT side of Our Robot
  * Line dtector 2 on ANALOG pins 1 on the RIGHT side of Our Robot 
@@ -22,8 +22,8 @@ void setup() {
   robot.AddLineSensor(1,"RIGHT");         // In order to refer to this sensor we need to give '1' as an argument to the reading sensor
                                       //functions if you will implement more sensors you can refere to each sensor by its number
   
-  robot.AddRotor(9,"Left");           //Adding Rotors and definig which rotor is on which side
-  robot.AddRotor(10,"Right");
+ robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
+ robot.AddDCRotor(5,4,"Right");
 }
 
 void loop() {
