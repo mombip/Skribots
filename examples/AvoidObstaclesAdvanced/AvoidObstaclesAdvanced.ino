@@ -14,8 +14,8 @@
  * Distance detectors needs two pins to be conected:
  * 
  * Detector on the Left Side of the robot:
- * ECHO on pin  7
- * TRIGER on pin 6
+ * ECHO on pin  10
+ * TRIGER on pin 9
  * 
  * DEetector on the Right Side of the robot:
  * ECHO on pin  12
@@ -33,7 +33,7 @@ void setup() {
   robot.AddDCRotor(5,4,"Right");
   
   robot.AddDistSensor(12,11,"Left");   //adding Distance Sensors  and naming them "Left and Right";
-  robot.AddDistSensor(7,6,"Right");
+  robot.AddDistSensor(10,9,"Right");
 
 }
 
