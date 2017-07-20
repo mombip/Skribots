@@ -9,6 +9,7 @@
 #include <StandardCplusplus.h>
 #include <utilities/BlueDentist.h>
 #include <utilities\Rotor.h>
+#include <utilities\SoundDetector.h>
 #include <vector>
 
   class SkriBot

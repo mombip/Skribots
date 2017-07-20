@@ -19,8 +19,8 @@
  * Timmings for turns are set for example values, when building own robot you should do some tests to set good working turning times.
  */
 
- #define ECHO_PIN 7
- #define TRIGGER_PIN 6 
+ #define ECHO_PIN 11
+ #define TRIGGER_PIN 12
 
  #define STOP_LED_PIN 4
  #define WARNING_LED_PIN  3
@@ -45,19 +45,21 @@ void setup() {
 
 void loop() {
 
- distance = robot.ReadDistSensor("Main",25); 		// Reading the distance to the nearest obstacle from our previously defined "Main" sensor up to 25 cm if nothing in range it returns 25 cm.
+ distance = robot.ReadDistSensor("Main",50); 		// Reading the distance to the nearest obstacle from our previously defined "Main" sensor up to 25 cm if nothing in range it returns 25 cm.
 
-       if(distance == 25){
-             robot.TurnOnLED("OKLED");                // If no obastacle is in range go continuisly forward.
+       if(distance == 50){
+             //robot.TurnOnLED("OKLED");
+             robot.SetSpeed(255);                // If no obastacle is in range go continuisly forward.
              robot.MoveBack();
-       }else if(distance < 25 && distance > 10){
-             robot.TurnOffLED("OKLED");                // If  obastacle is in range go forward but be carful.
-             robot.TurnOnLED("WARNINGLED");
+       }else if(distance < 50 && distance > 20){
+             //robot.TurnOffLED("OKLED");                // If  obastacle is in range go forward but be carful.
+             //robot.TurnOnLED("WARNINGLED");
+             robot.SetSpeed(200);
              robot.MoveBack();
-       }else if(distance < 10){
-             robot.TurnOffLED("OKLED");                // If  obastacle is too close STOP the robot.
-             robot.TurnOnLED("STOPLED");
-             robot.TurnOffLED("WARNINGLED");
+       }else if(distance < 20){
+             //robot.TurnOffLED("OKLED");                // If  obastacle is too close STOP the robot.
+             //robot.TurnOnLED("STOPLED");
+             //robot.TurnOffLED("WARNINGLED");
              robot.Stop();
        }
       

@@ -12,8 +12,8 @@
  * Distance detectors needs two pins to be conected:
  * 
  * Detector on the Left Side of the robot:
- * ECHO on pin  10
- * TRIGER on pin 9
+ * ECHO on pin  7
+ * TRIGER on pin 6
  * 
  * DEetector on the Right Side of the robot:
  * ECHO on pin  12
