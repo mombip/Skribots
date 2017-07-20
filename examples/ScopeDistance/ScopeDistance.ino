@@ -17,6 +17,7 @@ void setup() {
   robot.AddLineSensor(0,"CENTER");
   robot.AddLineSensor(1,"RIGHT");
   robot.Stop();
+  robot.SetSpeed(250);
  
   
 }

@@ -31,28 +31,31 @@
 void setup() {
   robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
   robot.AddDCRotor(5,4,"Right");
+  robot.SetSpeed(250);
   
   robot.AddDistSensor(12,11,"Left");   //adding Distance Sensors  and naming them "Left and Right";
-  robot.AddDistSensor(7,6,"Right");
+  robot.AddDistSensor(10,9,"Right");
+
+  robot.SetSpeed(250);
 
 }
 
 void loop() {
-    LeftSensor = robot.ReadDistSensor("Left",10);
-    RightSensor = robot.ReadDistSensor("Right",10);         //Reading from distance sensors up to 10 cm.
+    LeftSensor = robot.ReadDistSensor("Left",20);
+    RightSensor = robot.ReadDistSensor("Right",20);         //Reading from distance sensors up to 10 cm.
     if(LeftSensor > RightSensor){                           //checking previous readout
         if(RightSensor > lastRightSensor){        
-          robot.TurnRight(300);                              // Turning Right  
+          robot.FaceRight(300);                              // Turning Right  
         }else{
-          robot.TurnLeft(600);                              // We turned Left and now we are turning Right again?! We are probably in the corner lets escape!
+          robot.FaceLeft(600);                              // We turned Left and now we are turning Right again?! We are probably in the corner lets escape!
         } 
     }
     if(RightSensor > LeftSensor){
       if(LeftSensor > lastLeftSensor ){
-        robot.TurnLeft(300);                                 // Turning Left
+        robot.FaceLeft(300);                                 // Turning Left
       }
       else{
-        robot.TurnRight(600);                                 // We turned Right and now we are turning Left again?! We are probably in the corner lets escape!
+        robot.FaceRight(1200);                                 // We turned Right and now we are turning Left again?! We are probably in the corner lets escape!
       }
     }
     else{

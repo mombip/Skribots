@@ -24,6 +24,7 @@ void setup() {
   
  robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
  robot.AddDCRotor(5,4,"Right");
+ robot.SetSpeed(250);
 }
 
 void loop() {

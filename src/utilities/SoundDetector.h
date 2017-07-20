@@ -7,8 +7,8 @@
   	SoundDetector(int OutputPin ,String name);
     int ReadSound();
     void WaitForSound();
-    int GetNSound(int seconds);
-    static void SoundDetected();
+    int CountSound(int seconds);
+    //static void SoundDetected();
     String name();
     static long times[5];
     static int Nsignal;

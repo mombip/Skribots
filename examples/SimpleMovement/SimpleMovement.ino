@@ -22,7 +22,7 @@ void setup() {
   
     robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
     robot.AddDCRotor(5,4,"Right");
-
+    robot.SetSpeed(250);
     robot.AddLED(6,"LeftRotorLED");    //Adding LEDs
     robot.AddLED(7,"RightRotorLED");
     

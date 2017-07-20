@@ -26,6 +26,7 @@ void setup() {
   robot.AddLineSensor(2,"LEFT");         //Adding line sensors
   robot.AddLineSensor(0,"CENTER");
   robot.AddLineSensor(1,"RIGHT");
+  robot.SetSpeed(250);
 
   robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
   robot.AddDCRotor(5,4,"Right");

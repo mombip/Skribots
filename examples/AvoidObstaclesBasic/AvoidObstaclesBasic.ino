@@ -29,9 +29,11 @@ void setup() {
 
   robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
   robot.AddDCRotor(5,4,"Right");
+
+  robot.SetSpeed(250);
   
   robot.AddDistSensor(12,11,"Left");              //adding Distance sensor and naming them "Left" and "Right". 
-  robot.AddDistSensor(7,6,"Right");
+  robot.AddDistSensor(10,9,"Right");
 
 }
 

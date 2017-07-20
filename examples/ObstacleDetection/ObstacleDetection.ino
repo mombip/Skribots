@@ -34,7 +34,8 @@ void setup() {
 
   robot.AddDCRotor(6,7,"Left");          //adding rotors for movement
   robot.AddDCRotor(5,4,"Right");
-
+  robot.SetSpeed(250);
+  
    robot.AddLED(STOP_LED_PIN,"STOPLED");         // Adding LEDs
    robot.AddLED(OK_LED_PIN,"OKLED");
    robot.AddLED(WARNING_LED_PIN,"WARNINGLED");
