@@ -4,11 +4,9 @@
   class SoundDetector
  {
   public:
-  	SoundDetector(int OutputPin ,String name);
-    int ReadSound();
-    void WaitForSound();
+    SoundDetector(int OutputPin ,String name);
     int CountSound(int seconds);
-    //static void SoundDetected();
+    static void SoundDetected();
     String name();
     static long times[5];
     static int Nsignal;

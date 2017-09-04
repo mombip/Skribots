@@ -23,7 +23,12 @@
 
   void SkriBot::AddDistSensor(int EchoPin,int TrigPin,String name){
     DistSensor dsensor(EchoPin,TrigPin,name);
-      DistSensors.push_back(dsensor);
+    DistSensors.push_back(dsensor);
+  }
+
+  void SkriBot::AddDistSensor(int EchoPin,int TrigPin,byte id){
+    DistSensor dsensor(EchoPin,TrigPin,id);
+    DistSensors.push_back(dsensor);
   }
 
   void SkriBot::AddLineSensor(int pinL,String Name){
@@ -98,6 +103,20 @@
       }
       return(0);
   }
+
+
+  int SkriBot::ReadDistSensor(int id, int max){
+     for(int zz = 0; zz < DistSensors.size(); zz++){
+                    //Serial.print("Sensor:");
+                    //Serial.println(DistSensors[zz].GetID());
+                    if(DistSensors[zz].GetID() == id){
+                      return(DistSensors[zz].ReadSensor(max));
+                      break;
+                    }
+      }
+      return(0);
+  }
+
 
 
   
@@ -318,6 +337,47 @@
       }
 
     }
+  }
+
+  void SkriBot::RawRotorMove(int left, int right){
+      byte leftDir,leftSpeed,rightDir,rightSpeed;
+
+ 
+       if(left > 250){
+        leftSpeed = left - 250;
+        leftDir = 0;
+      }else if(left == 250){
+        leftSpeed = 0;
+        leftDir = 0;
+      }else{
+        leftSpeed = 250 - left;
+        leftDir = 1;
+      }
+
+        if(right > 250){
+        rightSpeed = right-250;
+        rightDir = 1;
+      }else if(right == 250){
+        rightSpeed = 0;
+        leftDir = 1;
+      }else{
+        rightSpeed = 250-right;
+        rightDir = 0;
+      }
+
+
+
+                for(int kk = 0; kk < LeftDCRotors.size(); kk++){
+                    LeftDCRotors[kk].SetDirection(leftDir);
+                    LeftDCRotors[kk].SetSpeed(leftSpeed);
+                    LeftDCRotors[kk].Move();
+                  }
+          
+                  for(int kk = 0; kk < RightDCRotors.size(); kk++){
+                    RightDCRotors[kk].SetDirection(rightDir);
+                    RightDCRotors[kk].SetSpeed(rightSpeed);
+                    RightDCRotors[kk].Move();
+                  }
   }
 
     void SkriBot::SetSpeed(int s){ 

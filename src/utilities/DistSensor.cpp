@@ -8,6 +8,14 @@ DistSensor::DistSensor(int EP,int Trigg, String Name){
    pinMode(EP, INPUT);
 }
 
+DistSensor::DistSensor(int EP,int Trigg, byte _ID){
+  EchoPin = EP;
+  TriggerPin = Trigg;
+  ID = _ID;
+   pinMode(Trigg, OUTPUT);
+   pinMode(EP, INPUT);
+}
+
   int DistSensor::ReadSensor(int cm){
     digitalWrite(TriggerPin,HIGH);
     delayMicroseconds(10);
@@ -34,4 +42,8 @@ DistSensor::DistSensor(int EP,int Trigg, String Name){
 
   String DistSensor::GetName(){
     return(name);
+  }
+
+  byte DistSensor::GetID(){
+    return(ID);
   }

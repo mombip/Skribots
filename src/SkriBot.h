@@ -7,7 +7,7 @@
 #include <utilities\LineSensor.h>
 #include <utilities\Scope.h>
 #include <StandardCplusplus.h>
-#include <utilities/BlueDentist.h>
+#include <utilities\BlueDentist.h>
 #include <utilities\Rotor.h>
 #include <utilities\SoundDetector.h>
 #include <vector>
@@ -18,6 +18,7 @@
   	SkriBot();
   	void AddRotor(int Pin,String Side, int neutral = 1520); 
   	void AddDistSensor(int EchoPin,int TrigPin,String Name);
+    void AddDistSensor(int EchoPin,int TrigPin,byte id);
     void AddLED(int Pin,String name);
     void AddLineSensor(int Pin, String Name); 
     void AddScope(int EchoPin,int Trigg,int ServoPin,String Name);
@@ -31,11 +32,13 @@
     void TurnRight(int ms = 200);
     void MoveForward(int ms = -1);
     void MoveBack(int ms = -1);
+    void RawRotorMove(int left,int right);
     void Stop();   
 
     void SetSpeed(int speed);                                               //functions for movements
 
     int ReadDistSensor(String id, int max = 100);
+    int ReadDistSensor(int id, int max = 100);
                                                                   //distance sensor readout
 
     void TurnOnLED(String name);
