@@ -94,10 +94,10 @@
     return(false);
   }
 
-  int SkriBot::ReadDistSensor(String id, int max){
-     for(int zz = 0; zz < DistSensors.size(); zz++){
-                    if(DistSensors[zz].GetName() == id){
-                      return(DistSensors[zz].ReadSensor(max));
+  bool SkriBot::ReadLineSensor(int id){
+     for(int zz = 0; zz < LineSensors.size(); zz++){
+                    if(LineSensors[zz].GetID() == id){
+                      return(LineSensors[zz].ReadSensor());
                       break;
                     }
       }
@@ -110,6 +110,18 @@
                     //Serial.print("Sensor:");
                     //Serial.println(DistSensors[zz].GetID());
                     if(DistSensors[zz].GetID() == id){
+                      return(DistSensors[zz].ReadSensor(max));
+                      break;
+                    }
+      }
+      return(0);
+  }
+
+   int SkriBot::ReadDistSensor(String name, int max){
+     for(int zz = 0; zz < DistSensors.size(); zz++){
+                    //Serial.print("Sensor:");
+                    //Serial.println(DistSensors[zz].GetID());
+                    if(DistSensors[zz].GetName() == name){
                       return(DistSensors[zz].ReadSensor(max));
                       break;
                     }
@@ -359,7 +371,7 @@
         rightDir = 1;
       }else if(right == 250){
         rightSpeed = 0;
-        leftDir = 1;
+        rightDir = 1;
       }else{
         rightSpeed = 250-right;
         rightDir = 0;

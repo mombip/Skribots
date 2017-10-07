@@ -14,6 +14,15 @@ LineSensor::LineSensor(int PinL, String Name){
     //Serial.println(logicBorder);
 }
 
+LineSensor::LineSensor(int PinL, int _id){
+ _id = id;
+ sensorPin = PinL;
+  delay(500);
+  int blackReadOut = 0;
+    blackReadOut = blackReadOut/100;
+    logicBorder = 500;
+}
+
 bool LineSensor::ReadSensor(){
   int readout = analogRead(sensorPin);
     if(readout > logicBorder){
@@ -25,6 +34,10 @@ bool LineSensor::ReadSensor(){
 
 int LineSensor::ReadSensorRaw(){
     return(analogRead(sensorPin));
+}
+
+int LineSensor::GetID(){
+    return(id);
 }
 
 void LineSensor::SetLogicBorder(int border){
