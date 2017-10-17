@@ -1,15 +1,15 @@
 #ifndef SkriBot_H
 #define SkriBot_H
 #include "Arduino.h"
-#include <utilities\ServoRotor.h>
-#include <utilities\DistSensor.h>
-#include <utilities\RobotLED.h>
-#include <utilities\LineSensor.h>
-#include <utilities\Scope.h>
+#include <utilities/ServoRotor.h>
+#include <utilities/DistSensor.h>
+#include <utilities/RobotLED.h>
+#include <utilities/LineSensor.h>
+#include <utilities/Scope.h>
 #include <StandardCplusplus.h>
-#include <utilities\BlueDentist.h>
-#include <utilities\Rotor.h>
-#include <utilities\SoundDetector.h>
+#include <utilities/BlueDentist.h>
+#include <utilities/Rotor.h>
+#include <utilities/SoundDetector.h>
 #include <vector>
 
   class SkriBot
@@ -45,6 +45,7 @@
     void TurnOffLED(String name);                                 // LED functions
 
     bool ReadLineSensor(String name);
+    bool ReadLineSensor(int id);
                                                                  // line sensor readout
     void SetScopeAngle(String id, int deg);  
     int  GetScopeDistance(String id);                               //Scope functions
